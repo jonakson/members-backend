@@ -1,5 +1,6 @@
 package dev.jonatancalzadodiaz.membersbackend.member;
 
+import dev.jonatancalzadodiaz.membersbackend.subscription.Subscription;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity(name = "Member")
 @Table(
@@ -100,4 +102,10 @@ public class Member {
             columnDefinition = "BOOLEAN DEFAULT FALSE"
     )
     private Boolean isAdmin;
+
+    // Relationship with Subscription
+    @OneToMany(
+            mappedBy = "member"
+    )
+    List<Subscription> subscriptions;
 }

@@ -1,5 +1,6 @@
 package dev.jonatancalzadodiaz.membersbackend.payment;
 
+import dev.jonatancalzadodiaz.membersbackend.subscription.Subscription;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -82,4 +83,11 @@ public class Payment {
             columnDefinition = "TEXT"
     )
     private String bankPaymentReference;
+
+    // Relationship with Subscription
+    @OneToOne(
+            mappedBy = "payment"
+    )
+    @PrimaryKeyJoinColumn
+    private Subscription subscription;
 }

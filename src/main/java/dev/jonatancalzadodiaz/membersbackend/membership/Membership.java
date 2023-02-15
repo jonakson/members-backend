@@ -1,5 +1,6 @@
 package dev.jonatancalzadodiaz.membersbackend.membership;
 
+import dev.jonatancalzadodiaz.membersbackend.subscription.Subscription;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,6 +9,7 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity(name = "Membership")
 @Table(
@@ -69,5 +71,11 @@ public class Membership {
             scale = 2
     )
     private BigDecimal price;
+
+    // Relationship with Subscription
+    @OneToMany(
+            mappedBy = "membership"
+    )
+    List<Subscription> subscriptions;
 
 }
